@@ -59,6 +59,7 @@ public class AdminPage extends JFrame{
 
         add.addActionListener(new ButtonEventManager());
         clear.addActionListener(new ButtonEventManager());
+        done.addActionListener(new ButtonEventManager());
 
     }
 
@@ -113,6 +114,12 @@ public class AdminPage extends JFrame{
 
                 questionList.clearList();
 
+            }
+
+            if(e.getSource() == done) {
+                LoginForm form = new LoginForm();
+                form.setVisible(true);
+                dispose();
             }
 
         }
