@@ -2,6 +2,7 @@ package com.myapp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class AdminPage extends JFrame{
 
@@ -51,6 +52,29 @@ public class AdminPage extends JFrame{
         bg.add(r2);
         bg.add(r3);
         bg.add(r4);
+    }
+
+    public class QuestionCreator {
+        ArrayList<String> questions = new ArrayList<>();
+        ArrayList<String[]> options = new ArrayList<>();
+        ArrayList<String> correctAns = new ArrayList<>();
+
+
+        public void addQuest(String quest, String[] opt) {
+
+            questions.add(quest);
+            options.add(opt);
+
+            if(r1.isSelected())
+                correctAns.add(option1.getText());
+            if(r2.isSelected())
+                correctAns.add(option2.getText());
+            if(r3.isSelected())
+                correctAns.add(option3.getText());
+            if(r4.isSelected())
+                correctAns.add(option4.getText());
+
+        }
     }
 
 }
