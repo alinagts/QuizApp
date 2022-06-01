@@ -2,6 +2,8 @@ package com.myapp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class LoginForm extends JFrame {
@@ -30,6 +32,24 @@ public class LoginForm extends JFrame {
         container.add(password);
         container.add(button);
 
+        button.addActionListener(new ButtonEventManager());
     }
 
+    class ButtonEventManager implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(login.getText().equals("John") && password.getText().equals("password")) {
+                AdminPage adminPage = new AdminPage();
+                adminPage.setVisible(true);
+                dispose();
+            } else {
+                UserPage userPage = new UserPage();
+                userPage.setVisible(true);
+                dispose();
+            }
+
+        }
+    }
 }
