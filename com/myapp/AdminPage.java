@@ -58,6 +58,7 @@ public class AdminPage extends JFrame{
         bg.add(r4);
 
         add.addActionListener(new ButtonEventManager());
+        clear.addActionListener(new ButtonEventManager());
 
     }
 
@@ -82,6 +83,13 @@ public class AdminPage extends JFrame{
                 this.correctAns.add(option4.getText());
 
         }
+
+        public void clearList() {
+            this.questions = new ArrayList<>();
+            this.options = new ArrayList<>();
+            this.correctAns = new ArrayList<>();
+        }
+
     }
 
     class ButtonEventManager implements ActionListener {
@@ -98,6 +106,12 @@ public class AdminPage extends JFrame{
                 option2.setText("");
                 option3.setText("");
                 option4.setText("");
+
+            }
+
+            if(e.getSource() == clear) {
+
+                questionList.clearList();
 
             }
 
