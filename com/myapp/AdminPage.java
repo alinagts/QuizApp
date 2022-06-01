@@ -2,6 +2,8 @@ package com.myapp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class AdminPage extends JFrame{
@@ -22,6 +24,7 @@ public class AdminPage extends JFrame{
     JRadioButton r4 = new JRadioButton();
     ButtonGroup bg = new ButtonGroup();
     JLabel empty = new JLabel("");
+    QuestionCreator questionList = new QuestionCreator();
 
     public AdminPage() {
         super("Admin Mode");
@@ -52,6 +55,9 @@ public class AdminPage extends JFrame{
         bg.add(r2);
         bg.add(r3);
         bg.add(r4);
+
+        add.addActionListener(new ButtonEventManager());
+
     }
 
     public class QuestionCreator {
@@ -73,6 +79,26 @@ public class AdminPage extends JFrame{
                 correctAns.add(option3.getText());
             if(r4.isSelected())
                 correctAns.add(option4.getText());
+
+        }
+    }
+
+    class ButtonEventManager implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(e.getSource() == add) {
+                String[] opts = {option1.getText(), option2.getText(), option3.getText(), option4.getText()};
+                questionList.addQuest(question.getText(), opts);
+
+                question.setText("");
+                option1.setText("");
+                option2.setText("");
+                option3.setText("");
+                option4.setText("");
+
+            }
 
         }
     }
