@@ -99,14 +99,24 @@ public class AdminPage extends JFrame{
         public void actionPerformed(ActionEvent e) {
 
             if(e.getSource() == add) {
-                String[] opts = {option1.getText(), option2.getText(), option3.getText(), option4.getText()};
-                questionList.addQuest(question.getText(), opts);
 
-                question.setText("");
-                option1.setText("");
-                option2.setText("");
-                option3.setText("");
-                option4.setText("");
+                String[] opts = {option1.getText(), option2.getText(), option3.getText(), option4.getText()};
+                boolean isChecked = r1.isSelected() || r2.isSelected() || r3.isSelected() || r4.isSelected();
+
+                if(question.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Enter the question");
+                } else if(isChecked) {
+                    questionList.addQuest(question.getText(), opts);
+
+                    question.setText("");
+                    option1.setText("");
+                    option2.setText("");
+                    option3.setText("");
+                    option4.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Choose a correct answer");
+                }
 
             }
 
