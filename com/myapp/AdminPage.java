@@ -27,6 +27,7 @@ public class AdminPage extends JFrame{
     QuestionCreator questionList = new QuestionCreator();
 
     public AdminPage() {
+
         super("Admin Mode");
         super.setBounds(500, 300, 600, 500);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,17 +69,17 @@ public class AdminPage extends JFrame{
 
         public void addQuest(String quest, String[] opt) {
 
-            questions.add(quest);
-            options.add(opt);
+            this.questions.add(quest);
+            this.options.add(opt);
 
             if(r1.isSelected())
-                correctAns.add(option1.getText());
+                this.correctAns.add(option1.getText());
             if(r2.isSelected())
-                correctAns.add(option2.getText());
+                this.correctAns.add(option2.getText());
             if(r3.isSelected())
-                correctAns.add(option3.getText());
+                this.correctAns.add(option3.getText());
             if(r4.isSelected())
-                correctAns.add(option4.getText());
+                this.correctAns.add(option4.getText());
 
         }
     }
