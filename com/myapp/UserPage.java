@@ -12,13 +12,14 @@ public class UserPage extends JFrame{
     JButton option1, option2, option3, option4;
     JButton restart = new JButton("Start again");
     JLabel scoreText = new JLabel("Your current score:");
+    String name;
     ArrayList<String> questions = new ArrayList<>();
     ArrayList<String[]> options = new ArrayList<>();
     ArrayList<String> correctAns = new ArrayList<>();
     int index = 0;
     int correctGuesses = 0;
 
-    public UserPage() {
+    public UserPage(String name) {
 
         super("Quiz");
         super.setBounds(500, 300, 600, 500);
@@ -53,6 +54,8 @@ public class UserPage extends JFrame{
         option4.addActionListener(new UserPage.ButtonEventManager());
         restart.addActionListener(new UserPage.ButtonEventManager());
 
+        this.name = name;
+
     }
 
     public void takeQuiz(ArrayList<String> questions, ArrayList<String[]> options, ArrayList<String> correctAns) {
@@ -76,7 +79,8 @@ public class UserPage extends JFrame{
             score.setText(correctGuesses + "/" + questions.size());
 
         } else {
-            JOptionPane.showMessageDialog(null,   "Your score is " + correctGuesses + "/" + questions.size());
+            int scoreInPerc = Math.round(correctGuesses * 100 / questions.size());
+            JOptionPane.showMessageDialog(null,   name + ", your score is " + correctGuesses + "/" + questions.size()+ "\n" + scoreInPerc + "%");
 
             option1.setEnabled(false);
             option2.setEnabled(false);

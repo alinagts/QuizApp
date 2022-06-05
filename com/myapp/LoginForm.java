@@ -73,7 +73,7 @@ public class LoginForm extends JFrame {
                 adminPage.setVisible(true);
                 dispose();
             } else if (questions.size() != 0 && options.size() != 0 && correctAns.size() != 0 ){
-                UserPage userPage = new UserPage();
+                UserPage userPage = new UserPage(login.getText());
                 userPage.setVisible(true);
                 userPage.takeQuiz(questions, options, correctAns);
                 dispose();
