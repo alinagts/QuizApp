@@ -25,7 +25,7 @@ public class UserPage extends JFrame{
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();
-        container.setLayout(new GridLayout(7, 1, 2, 10));
+        container.setLayout(new GridLayout(8, 1, 2, 10));
 
         questionText = new JLabel("Question text");
         score = new JLabel("score");
@@ -45,6 +45,7 @@ public class UserPage extends JFrame{
         container.add(option4);
         container.add(scoreText);
         container.add(score);
+        container.add(restart);
 
         option1.addActionListener(new UserPage.ButtonEventManager());
         option2.addActionListener(new UserPage.ButtonEventManager());
