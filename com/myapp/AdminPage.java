@@ -117,7 +117,7 @@ public class AdminPage extends JFrame{
                 clearList();
 
             if(e.getSource() == done) {
-                LoginForm form = new LoginForm();
+                LoginForm form = new LoginForm(questions, options, correctAns);
                 form.setVisible(true);
                 dispose();
             }
