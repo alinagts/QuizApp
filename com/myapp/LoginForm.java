@@ -72,10 +72,13 @@ public class LoginForm extends JFrame {
                 AdminPage adminPage = new AdminPage();
                 adminPage.setVisible(true);
                 dispose();
-            } else {
+            } else if (questions.size() != 0 && options.size() != 0 && correctAns.size() != 0 ){
                 UserPage userPage = new UserPage();
                 userPage.setVisible(true);
+                userPage.takeQuiz(questions, options, correctAns);
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "There are no questions yet. Wait for admin to add some");
             }
 
         }
