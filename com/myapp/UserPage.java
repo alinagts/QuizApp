@@ -10,6 +10,7 @@ public class UserPage extends JFrame{
 
     JLabel questionText, score;
     JButton option1, option2, option3, option4;
+    JButton restart = new JButton("Start again");
     JLabel scoreText = new JLabel("Your current score:");
     ArrayList<String> questions = new ArrayList<>();
     ArrayList<String[]> options = new ArrayList<>();
@@ -49,6 +50,7 @@ public class UserPage extends JFrame{
         option2.addActionListener(new UserPage.ButtonEventManager());
         option3.addActionListener(new UserPage.ButtonEventManager());
         option4.addActionListener(new UserPage.ButtonEventManager());
+        restart.addActionListener(new UserPage.ButtonEventManager());
 
     }
 
@@ -116,6 +118,16 @@ public class UserPage extends JFrame{
                     correctGuesses++;
                 }
                 index++;
+                nextQuestion();
+            }
+
+            if(e.getSource() == restart) {
+                option1.setEnabled(true);
+                option2.setEnabled(true);
+                option3.setEnabled(true);
+                option4.setEnabled(true);
+                index = 0;
+                correctGuesses = 0;
                 nextQuestion();
             }
 
