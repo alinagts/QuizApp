@@ -2,6 +2,8 @@ package com.myapp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class UserPage extends JFrame{
@@ -43,6 +45,11 @@ public class UserPage extends JFrame{
         container.add(scoreText);
         container.add(score);
 
+        option1.addActionListener(new UserPage.ButtonEventManager());
+        option2.addActionListener(new UserPage.ButtonEventManager());
+        option3.addActionListener(new UserPage.ButtonEventManager());
+        option4.addActionListener(new UserPage.ButtonEventManager());
+
     }
 
     public void takeQuiz(ArrayList<String> questions, ArrayList<String[]> options, ArrayList<String> correctAns) {
@@ -74,6 +81,45 @@ public class UserPage extends JFrame{
             option4.setEnabled(false);
         }
 
+
+    }
+
+    class ButtonEventManager implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+            if(e.getSource() == option1) {
+                if(option1.getText().equals(correctAns.get(index))) {
+                    correctGuesses++;
+                }
+                index++;
+                nextQuestion();
+            }
+            if(e.getSource() == option2) {
+                if(option2.getText().equals(correctAns.get(index))) {
+                    correctGuesses++;
+                }
+                index++;
+                nextQuestion();
+            }
+            if(e.getSource() == option3) {
+                if(option3.getText().equals(correctAns.get(index))) {
+                    correctGuesses++;
+                }
+                index++;
+                nextQuestion();
+            }
+            if(e.getSource() == option4) {
+                if(option4.getText().equals(correctAns.get(index))) {
+                    correctGuesses++;
+                }
+                index++;
+                nextQuestion();
+            }
+
+        }
 
     }
 
