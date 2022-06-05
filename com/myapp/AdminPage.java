@@ -24,7 +24,9 @@ public class AdminPage extends JFrame{
     JRadioButton r4 = new JRadioButton();
     ButtonGroup bg = new ButtonGroup();
     JLabel empty = new JLabel("");
-    QuestionCreator questionList = new QuestionCreator();
+    ArrayList<String> questions = new ArrayList<>();
+    ArrayList<String[]> options = new ArrayList<>();
+    ArrayList<String> correctAns = new ArrayList<>();
 
     public AdminPage() {
 
@@ -63,34 +65,25 @@ public class AdminPage extends JFrame{
 
     }
 
-    public class QuestionCreator {
-        ArrayList<String> questions = new ArrayList<>();
-        ArrayList<String[]> options = new ArrayList<>();
-        ArrayList<String> correctAns = new ArrayList<>();
+    public void addQuest(String quest, String[] opt) {
 
+        this.questions.add(quest);
+        this.options.add(opt);
 
-        public void addQuest(String quest, String[] opt) {
+        if(r1.isSelected())
+            this.correctAns.add(option1.getText());
+        if(r2.isSelected())
+            this.correctAns.add(option2.getText());
+        if(r3.isSelected())
+            this.correctAns.add(option3.getText());
+        if(r4.isSelected())
+            this.correctAns.add(option4.getText());
+    }
 
-            this.questions.add(quest);
-            this.options.add(opt);
-
-            if(r1.isSelected())
-                this.correctAns.add(option1.getText());
-            if(r2.isSelected())
-                this.correctAns.add(option2.getText());
-            if(r3.isSelected())
-                this.correctAns.add(option3.getText());
-            if(r4.isSelected())
-                this.correctAns.add(option4.getText());
-
-        }
-
-        public void clearList() {
-            this.questions = new ArrayList<>();
-            this.options = new ArrayList<>();
-            this.correctAns = new ArrayList<>();
-        }
-
+    public void clearList() {
+        this.questions = new ArrayList<>();
+        this.options = new ArrayList<>();
+        this.correctAns = new ArrayList<>();
     }
 
     class ButtonEventManager implements ActionListener {
@@ -106,7 +99,7 @@ public class AdminPage extends JFrame{
                 if(question.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Enter the question");
                 } else if(isChecked) {
-                    questionList.addQuest(question.getText(), opts);
+                    addQuest(question.getText(), opts);
 
                     question.setText("");
                     option1.setText("");
@@ -120,11 +113,8 @@ public class AdminPage extends JFrame{
 
             }
 
-            if(e.getSource() == clear) {
-
-                questionList.clearList();
-
-            }
+            if(e.getSource() == clear)
+                clearList();
 
             if(e.getSource() == done) {
                 LoginForm form = new LoginForm();
