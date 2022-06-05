@@ -2,12 +2,18 @@ package com.myapp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UserPage extends JFrame{
 
     JLabel questionText, score;
     JButton option1, option2, option3, option4;
     JLabel scoreText = new JLabel("Your current score:");
+    ArrayList<String> questions = new ArrayList<>();
+    ArrayList<String[]> options = new ArrayList<>();
+    ArrayList<String> correctAns = new ArrayList<>();
+    int index = 0;
+    int correctGuesses = 0;
 
     public UserPage() {
 
@@ -36,6 +42,38 @@ public class UserPage extends JFrame{
         container.add(option4);
         container.add(scoreText);
         container.add(score);
+
+    }
+
+    public void takeQuiz(ArrayList<String> questions, ArrayList<String[]> options, ArrayList<String> correctAns) {
+        this.questions = questions;
+        this.options = options;
+        this.correctAns = correctAns;
+
+        nextQuestion();
+    }
+
+    public void nextQuestion() {
+
+        if(index < questions.size()) {
+
+            questionText.setText(questions.get(index));
+            option1.setText(options.get(index)[0]);
+            option2.setText(options.get(index)[1]);
+            option3.setText(options.get(index)[2]);
+            option4.setText(options.get(index)[3]);
+
+            score.setText(correctGuesses + "/" + questions.size());
+
+        } else {
+            JOptionPane.showMessageDialog(null,   "Your score is " + correctGuesses + "/" + questions.size());
+
+            option1.setEnabled(false);
+            option2.setEnabled(false);
+            option3.setEnabled(false);
+            option4.setEnabled(false);
+        }
+
 
     }
 
