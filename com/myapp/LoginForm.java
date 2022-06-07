@@ -50,7 +50,7 @@ public class LoginForm extends JFrame {
 
     public LoginForm(ArrayList<String> questions, ArrayList<String[]> options, ArrayList<String> correctAns) {
         super("Quiz Game");
-        super.setBounds(500, 300, 600, 500);
+        super.setBounds(X_COORDINATE, Y_COORDINATE, FRAME_WIDTH, FRAME_HEIGHT);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();

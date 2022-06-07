@@ -8,6 +8,15 @@ import java.util.ArrayList;
 
 public class UserPage extends JFrame{
 
+    final int X_COORDINATE = 500;
+    final int Y_COORDINATE = 300;
+    final int FRAME_WIDTH = 600;
+    final int FRAME_HEIGHT = 500;
+    final int GRID_ROWS = 8;
+    final int GRID_COLUMNS = 1;
+    final int VERTICAL_GAP = 10;
+    final int HORIZONTAL_GAP = 2;
+
     JLabel questionText, score;
     JButton option1, option2, option3, option4;
     JButton restart = new JButton("Start again");
@@ -22,11 +31,11 @@ public class UserPage extends JFrame{
     public UserPage(String name) {
 
         super("Quiz");
-        super.setBounds(500, 300, 600, 500);
+        super.setBounds(X_COORDINATE, Y_COORDINATE, FRAME_WIDTH, FRAME_HEIGHT);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();
-        container.setLayout(new GridLayout(8, 1, 2, 10));
+        container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
         questionText = new JLabel("Question text");
         score = new JLabel("score");
