@@ -24,9 +24,9 @@ public class LoginForm extends JFrame {
     JLabel passwordText = new JLabel("Enter your password");
     JTextField password = new JTextField();
     JButton button = new JButton("Login");
-    ArrayList<String> questions = new ArrayList<>();
-    ArrayList<String[]> options = new ArrayList<>();
-    ArrayList<String> correctAns = new ArrayList<>();
+    ArrayList<String> questionArray = new ArrayList<>();
+    ArrayList<String[]> optionArray = new ArrayList<>();
+    ArrayList<String> correctAnswers = new ArrayList<>();
 
     public LoginForm() {
         super("Quiz Game");
@@ -54,7 +54,7 @@ public class LoginForm extends JFrame {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();
-        container.setLayout(new GridLayout(6, 1, 2, 10));
+        container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
         title.setHorizontalAlignment(JTextField.CENTER);
 
@@ -67,9 +67,9 @@ public class LoginForm extends JFrame {
 
         button.addActionListener(new ButtonEventManager());
 
-        this. questions = questions;
-        this.options = options;
-        this.correctAns = correctAns;
+        this. questionArray = questions;
+        this.optionArray = options;
+        this.correctAnswers = correctAns;
     }
 
     class ButtonEventManager implements ActionListener {
@@ -81,10 +81,10 @@ public class LoginForm extends JFrame {
                 AdminPage adminPage = new AdminPage();
                 adminPage.setVisible(true);
                 dispose();
-            } else if (questions.size() != 0 && options.size() != 0 && correctAns.size() != 0 ){
+            } else if (questionArray.size() != 0 && optionArray.size() != 0 && correctAnswers.size() != 0 ){
                 UserPage userPage = new UserPage(login.getText());
                 userPage.setVisible(true);
-                userPage.takeQuiz(questions, options, correctAns);
+                userPage.takeQuiz(questionArray, optionArray, correctAnswers);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "There are no questions yet. Wait for admin to add some");

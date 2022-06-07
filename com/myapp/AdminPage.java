@@ -17,25 +17,19 @@ public class AdminPage extends JFrame{
     final int VERTICAL_GAP = 10;
     final int HORIZONTAL_GAP = 2;
 
-    JLabel questionText = new JLabel("Question text");
+    JLabel questLabel = new JLabel("Question text");
     JTextField question = new JTextField();
-    JLabel optionText = new JLabel("options");
-    JTextField option1 = new JTextField();
-    JTextField option2 = new JTextField();
-    JTextField option3 = new JTextField();
-    JTextField option4 = new JTextField();
-    JButton add = new JButton("Add question");
-    JButton clear = new JButton("Clear all questions");
-    JButton done = new JButton("Done");
-    JRadioButton r1 = new JRadioButton();
-    JRadioButton r2 = new JRadioButton();
-    JRadioButton r3 = new JRadioButton();
-    JRadioButton r4 = new JRadioButton();
-    ButtonGroup bg = new ButtonGroup();
+    JLabel optionLabel = new JLabel("options");
+    JTextField[] options = new JTextField[4];
+    JRadioButton[] radioButtons = new JRadioButton[4];
+    JButton addButton = new JButton("Add question");
+    JButton clearButton = new JButton("Clear all questions");
+    JButton doneButton = new JButton("Done");
+    ButtonGroup buttonGroup = new ButtonGroup();
     JLabel empty = new JLabel("");
-    ArrayList<String> questions = new ArrayList<>();
-    ArrayList<String[]> options = new ArrayList<>();
-    ArrayList<String> correctAns = new ArrayList<>();
+    ArrayList<String> questionArray = new ArrayList<>();
+    ArrayList<String[]> optionArray = new ArrayList<>();
+    ArrayList<String> correctAnswers = new ArrayList<>();
 
     public AdminPage() {
 
@@ -47,52 +41,48 @@ public class AdminPage extends JFrame{
         container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
 
-        container.add(questionText);
+        container.add(questLabel);
         container.add(question);
-        container.add(optionText);
+        container.add(optionLabel);
         container.add(empty);
-        container.add(r1);
-        container.add(option1);
-        container.add(r2);
-        container.add(option2);
-        container.add(r3);
-        container.add(option3);
-        container.add(r4);
-        container.add(option4);
-        container.add(add);
-        container.add(clear);
-        container.add(done);
 
-        bg.add(r1);
-        bg.add(r2);
-        bg.add(r3);
-        bg.add(r4);
+        for(int i = 0; i < 4; i++) {
+            options[i] = new JTextField();
+            radioButtons[i] = new JRadioButton();
 
-        add.addActionListener(new ButtonEventManager());
-        clear.addActionListener(new ButtonEventManager());
-        done.addActionListener(new ButtonEventManager());
+            container.add(radioButtons[i]);
+            container.add(options[i]);
+            buttonGroup.add(radioButtons[i]);
+        }
+
+        container.add(addButton);
+        container.add(clearButton);
+        container.add(doneButton);
+
+        addButton.addActionListener(new ButtonEventManager());
+        clearButton.addActionListener(new ButtonEventManager());
+        doneButton.addActionListener(new ButtonEventManager());
 
     }
 
     public void addQuest(String quest, String[] opt) {
 
-        this.questions.add(quest);
-        this.options.add(opt);
+        this.questionArray.add(quest);
+        this.optionArray.add(opt);
 
-        if(r1.isSelected())
-            this.correctAns.add(option1.getText());
-        if(r2.isSelected())
-            this.correctAns.add(option2.getText());
-        if(r3.isSelected())
-            this.correctAns.add(option3.getText());
-        if(r4.isSelected())
-            this.correctAns.add(option4.getText());
+        for(int i = 0; i < 4; i++) {
+
+            if(radioButtons[i].isSelected())
+                this.correctAnswers.add(options[i].getText());
+
+        }
+
     }
 
     public void clearList() {
-        this.questions = new ArrayList<>();
-        this.options = new ArrayList<>();
-        this.correctAns = new ArrayList<>();
+        this.questionArray = new ArrayList<>();
+        this.optionArray = new ArrayList<>();
+        this.correctAnswers = new ArrayList<>();
     }
 
     class ButtonEventManager implements ActionListener {
@@ -100,21 +90,27 @@ public class AdminPage extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(e.getSource() == add) {
+            if(e.getSource() == addButton) {
 
-                String[] opts = {option1.getText(), option2.getText(), option3.getText(), option4.getText()};
-                boolean isChecked = r1.isSelected() || r2.isSelected() || r3.isSelected() || r4.isSelected();
+                String[] opts = new String[4];
+                boolean isChecked = false;
+
+                for(int i = 0; i < 4; i++) {
+
+                    opts[i] = options[i].getText();
+                    if(radioButtons[i].isSelected())
+                        isChecked = true;
+                }
 
                 if(question.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Enter the question");
                 } else if(isChecked) {
                     addQuest(question.getText(), opts);
 
+                    for(int i = 0; i < 4; i++) {
+                        options[i].setText("");
+                    }
                     question.setText("");
-                    option1.setText("");
-                    option2.setText("");
-                    option3.setText("");
-                    option4.setText("");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Choose a correct answer");
@@ -122,11 +118,11 @@ public class AdminPage extends JFrame{
 
             }
 
-            if(e.getSource() == clear)
+            if(e.getSource() == clearButton)
                 clearList();
 
-            if(e.getSource() == done) {
-                LoginForm form = new LoginForm(questions, options, correctAns);
+            if(e.getSource() == doneButton) {
+                LoginForm form = new LoginForm(questionArray, optionArray, correctAnswers);
                 form.setVisible(true);
                 dispose();
             }
