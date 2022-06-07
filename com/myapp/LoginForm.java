@@ -9,6 +9,15 @@ import java.util.ArrayList;
 
 public class LoginForm extends JFrame {
 
+    final int X_COORDINATE = 500;
+    final int Y_COORDINATE = 300;
+    final int FRAME_WIDTH = 600;
+    final int FRAME_HEIGHT = 500;
+    final int GRID_ROWS = 6;
+    final int GRID_COLUMNS = 1;
+    final int VERTICAL_GAP = 10;
+    final int HORIZONTAL_GAP = 2;
+
     JLabel title = new JLabel("QUIZ-GAME");
     JLabel loginText = new JLabel("Enter your login");
     JTextField login = new JTextField();
@@ -21,11 +30,11 @@ public class LoginForm extends JFrame {
 
     public LoginForm() {
         super("Quiz Game");
-        super.setBounds(500, 300, 600, 500);
+        super.setBounds(X_COORDINATE, Y_COORDINATE, FRAME_WIDTH, FRAME_HEIGHT);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();
-        container.setLayout(new GridLayout(6, 1, 2, 10));
+        container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
         title.setHorizontalAlignment(JTextField.CENTER);
 

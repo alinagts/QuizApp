@@ -8,6 +8,15 @@ import java.util.ArrayList;
 
 public class AdminPage extends JFrame{
 
+    final int X_COORDINATE = 500;
+    final int Y_COORDINATE = 300;
+    final int FRAME_WIDTH = 600;
+    final int FRAME_HEIGHT = 500;
+    final int GRID_ROWS = 8;
+    final int GRID_COLUMNS = 2;
+    final int VERTICAL_GAP = 10;
+    final int HORIZONTAL_GAP = 2;
+
     JLabel questionText = new JLabel("Question text");
     JTextField question = new JTextField();
     JLabel optionText = new JLabel("options");
@@ -31,11 +40,11 @@ public class AdminPage extends JFrame{
     public AdminPage() {
 
         super("Admin Mode");
-        super.setBounds(500, 300, 600, 500);
+        super.setBounds(X_COORDINATE, Y_COORDINATE, FRAME_WIDTH, FRAME_HEIGHT);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = super.getContentPane();
-        container.setLayout(new GridLayout(8, 2, 2, 10));
+        container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
 
         container.add(questionText);
