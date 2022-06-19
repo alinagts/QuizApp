@@ -17,16 +17,13 @@ public class AdminPage extends JFrame{
     final int VERTICAL_GAP = 10;
     final int HORIZONTAL_GAP = 2;
 
-    JLabel questLabel = new JLabel("Question text");
     JTextField question = new JTextField();
-    JLabel optionLabel = new JLabel("options");
     JTextField[] options = new JTextField[4];
     JRadioButton[] radioButtons = new JRadioButton[4];
     JButton addButton = new JButton("Add question");
     JButton clearButton = new JButton("Clear all questions");
     JButton doneButton = new JButton("Done");
     ButtonGroup buttonGroup = new ButtonGroup();
-    JLabel empty = new JLabel("");
     ArrayList<String> questionArray = new ArrayList<>();
     ArrayList<String[]> optionArray = new ArrayList<>();
     ArrayList<String> correctAnswers = new ArrayList<>();
@@ -40,11 +37,10 @@ public class AdminPage extends JFrame{
         Container container = super.getContentPane();
         container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
-
-        container.add(questLabel);
+        container.add(new JLabel("Question text"));
         container.add(question);
-        container.add(optionLabel);
-        container.add(empty);
+        container.add(new JLabel("options"));
+        container.add(new JLabel());
 
         for(int i = 0; i < 4; i++) {
             options[i] = new JTextField();
@@ -71,7 +67,6 @@ public class AdminPage extends JFrame{
         this.optionArray.add(opt);
 
         for(int i = 0; i < 4; i++) {
-
             if(radioButtons[i].isSelected())
                 this.correctAnswers.add(options[i].getText());
 
@@ -122,7 +117,8 @@ public class AdminPage extends JFrame{
                 clearList();
 
             if(e.getSource() == doneButton) {
-                LoginForm form = new LoginForm(questionArray, optionArray, correctAnswers);
+                LoginForm form = new LoginForm();
+                form.setData(questionArray, optionArray, correctAnswers);
                 form.setVisible(true);
                 dispose();
             }

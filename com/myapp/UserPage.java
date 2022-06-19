@@ -17,10 +17,10 @@ public class UserPage extends JFrame{
     final int VERTICAL_GAP = 10;
     final int HORIZONTAL_GAP = 2;
 
-    JLabel questionText, score;
+    JLabel questionText = new JLabel();
+    JLabel score = new JLabel();
     JButton[] options = new JButton[4];
     JButton restartButton = new JButton("Start again");
-    JLabel scoreText = new JLabel("Your current score:");
     String name;
     ArrayList<String> questionArray = new ArrayList<>();
     ArrayList<String[]> optionArray = new ArrayList<>();
@@ -37,28 +37,22 @@ public class UserPage extends JFrame{
         Container container = super.getContentPane();
         container.setLayout(new GridLayout(GRID_ROWS, GRID_COLUMNS, HORIZONTAL_GAP, VERTICAL_GAP));
 
-        questionText = new JLabel("Question text");
-        score = new JLabel("score");
-
-        scoreText.setHorizontalAlignment(JTextField.CENTER);
-        score.setHorizontalAlignment(JTextField.CENTER);
-
-
         container.add(questionText);
+
         for(int i = 0; i < 4; i++) {
             options[i] = new JButton();
 
             container.add(options[i]);
             options[i].addActionListener(new UserPage.ButtonEventManager());
         }
-        container.add(scoreText);
+
+        container.add(new JLabel("Your current score:"));
         container.add(score);
         container.add(restartButton);
 
         restartButton.addActionListener(new UserPage.ButtonEventManager());
 
         this.name = name;
-
     }
 
     public void takeQuiz(ArrayList<String> questions, ArrayList<String[]> options, ArrayList<String> correctAns) {
@@ -91,14 +85,12 @@ public class UserPage extends JFrame{
             }
         }
 
-
     }
 
     class ButtonEventManager implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
 
             for(int i = 0; i < 4; i++) {
                 if(e.getSource() == options[i]) {
