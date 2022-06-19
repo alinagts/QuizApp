@@ -23,6 +23,7 @@ public class AdminPage extends JFrame{
     JButton addButton = new JButton("Add question");
     JButton clearButton = new JButton("Clear all questions");
     JButton doneButton = new JButton("Done");
+    JButton showResultsButton = new JButton("Show results");
     ButtonGroup buttonGroup = new ButtonGroup();
     ArrayList<String> questionArray = new ArrayList<>();
     ArrayList<String[]> optionArray = new ArrayList<>();
@@ -54,10 +55,12 @@ public class AdminPage extends JFrame{
         container.add(addButton);
         container.add(clearButton);
         container.add(doneButton);
+        container.add(showResultsButton);
 
         addButton.addActionListener(new ButtonEventManager());
         clearButton.addActionListener(new ButtonEventManager());
         doneButton.addActionListener(new ButtonEventManager());
+        showResultsButton.addActionListener(new ButtonEventManager());
 
     }
 
@@ -123,6 +126,14 @@ public class AdminPage extends JFrame{
                 dispose();
             }
 
+            if(e.getSource() == showResultsButton) {
+                if(Results.userNames.size() != 0 && Results.userScores.size() != 0) {
+                    Results resultsPage = new Results();
+                    resultsPage.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "There are no results yet");
+                }
+            }
         }
     }
 

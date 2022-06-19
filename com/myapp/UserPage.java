@@ -115,6 +115,7 @@ public class UserPage extends JFrame{
             }
 
             if(e.getSource() == backButton) {
+                Results.userScores.add(correctGuesses);
                 dispose();
             }
 
