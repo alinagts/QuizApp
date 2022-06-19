@@ -31,6 +31,26 @@ public class Results extends JFrame{
         container.add(new JLabel("Name:"));
         container.add(new JLabel("Score"));
 
+        boolean isSorted = false;
+        int a;
+        String b;
+        while(!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < userScores.size() - 1; i++) {
+                if(userScores.get(i) < userScores.get(i+1)) {
+                    isSorted = false;
+
+                    a = userScores.get(i);
+                    userScores.set(i, userScores.get(i + 1));
+                    userScores.set(i + 1, a);
+
+                    b = userNames.get(i);
+                    userNames.set(i, userNames.get(i + 1));
+                    userNames.set(i + 1, b);
+                }
+            }
+        }
+
         for(int i = 0; i < Results.userNames.size(); i++) {
             userName = new JLabel(Results.userNames.get(i));
             userScore = new JLabel(String.valueOf(Results.userScores.get(i)));
