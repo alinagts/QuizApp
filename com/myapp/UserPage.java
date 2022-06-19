@@ -12,7 +12,7 @@ public class UserPage extends JFrame{
     final int Y_COORDINATE = 300;
     final int FRAME_WIDTH = 600;
     final int FRAME_HEIGHT = 500;
-    final int GRID_ROWS = 8;
+    final int GRID_ROWS = 9;
     final int GRID_COLUMNS = 1;
     final int VERTICAL_GAP = 10;
     final int HORIZONTAL_GAP = 2;
@@ -21,6 +21,7 @@ public class UserPage extends JFrame{
     JLabel score = new JLabel();
     JButton[] options = new JButton[4];
     JButton restartButton = new JButton("Start again");
+    JButton backButton = new JButton("Back to login form");
     String name;
     ArrayList<String> questionArray = new ArrayList<>();
     ArrayList<String[]> optionArray = new ArrayList<>();
@@ -49,8 +50,10 @@ public class UserPage extends JFrame{
         container.add(new JLabel("Your current score:"));
         container.add(score);
         container.add(restartButton);
+        container.add(backButton);
 
         restartButton.addActionListener(new UserPage.ButtonEventManager());
+        backButton.addActionListener(new UserPage.ButtonEventManager());
 
         this.name = name;
     }
@@ -109,6 +112,10 @@ public class UserPage extends JFrame{
                 index = 0;
                 correctGuesses = 0;
                 nextQuestion();
+            }
+
+            if(e.getSource() == backButton) {
+                dispose();
             }
 
         }
