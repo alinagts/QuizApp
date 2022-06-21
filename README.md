@@ -4,6 +4,6 @@ Firstly there is a login form. There are no questions prepared therefore admin h
 
 Admin interface allows to add questions, clear the question list and see results of users.
 
-User then take the test. He or she can take this test again using button "Start again". There is also a timer which shows how much time is left to answer the question (time for every question is 10 seconds).
+User then can take the test. He or she can take this test again using button "Start again". There is also a timer which shows how much time is left to answer the question (time for each question is 10 seconds).
 
-After students took this test admin can see their scores. Results are sorted, who got the most points are first.
+After students took this test admin can see their scores. Results are sorted, who got the most points is first.
